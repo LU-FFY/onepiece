@@ -112,29 +112,29 @@ function Home({ products }) {
   return (
     <div>
       <h1>ONEPIECE STORE</h1>
-      <div class='rbord'>
-      <div className='search-bar'>
-        <input
-          type='text'
-          placeholder='Search for products titles ...'
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
-      <div className='grid product-grid'>
-        {filteredProducts.slice(0, visibleProducts).map((product) => (
-          <Link to={`/product/${product.id}`} key={product.id} className='product-card'>
-            <div>
-              <img src={product.image} alt={product.title} className='product-image-home' />
-              <div class='product-details-home'>
-                <p class='product-title-home'>{product.title}</p>
-                <p class='product-price-home'>${product.price}</p>
+      <div className='rbord'>
+        <div className='search-bar'>
+          <input
+            type='text'
+            placeholder='Search for products titles ...'
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        <div className='grid product-grid'>
+          {filteredProducts.slice(0, visibleProducts).map((product) => (
+            <Link to={`/product/${product.id}`} key={product.id} className='product-card'>
+              <div>
+                <img src={product.image} alt={product.title} className='product-image-home' />
+                <div className='product-details-home'>
+                  <p className='product-title-home'>{product.title}</p>
+                  <p className='product-price-home'>${product.price}</p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
@@ -152,21 +152,21 @@ function ProductDetail() {
   return (
     <div>
       <h1>Product Page</h1>
-      <div class='rbord-pro'> 
-      <div className='product-page'>
-        {product && (
-          <>
-            <img src={product.image} alt={product.title} className='product-image' />
-            <div className='product-details'>
-              <h2 className='product-title'>{product.title}</h2>
-              <p className='product-price'>${product.price}</p>
-              <p className='product-description'>{product.description}</p>
-              <p className='product-rating'>Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
-            </div>
-          </>
-        )}
+      <div className='rbord-pro'>
+        <div className='product-page'>
+          {product && (
+            <>
+              <img src={product.image} alt={product.title} className='product-image' />
+              <div className='product-details'>
+                <h2 className='product-title'>{product.title}</h2>
+                <p className='product-price'>${product.price}</p>
+                <p className='product-description'>{product.description}</p>
+                <p className='product-rating'>Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
@@ -200,8 +200,10 @@ function App() {
     <div className="App">
       {isLoggedIn ? (
         <>
-          <header><img src="https://www.pngitem.com/pimgs/m/38-380803_straw-hat-pirates-luffy-symbol-sticker-logo-one.png" alt="Logo" className="logo" /> {/* Logo */}
-          <button className="logout-button" onClick={handleLogout}>Logout</button></header>
+          <header>
+            <img src={logoUrl} alt="Logo" className="logo" />
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
+          </header>
           <Routes>
             <Route path="/" element={<Home products={products} />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
